@@ -1,0 +1,69 @@
+using System;
+using System.Collections.Generic;
+
+namespace KonsolenappTodo
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Willkommen in Ihrer ToDo-Liste");
+            Console.WriteLine("Bitte wählen Sie unter folgenden Optionen aus");
+            List<string> taskList = new List<string>();
+            string option = "";
+
+            while (option != "e")
+            {
+                Console.WriteLine("Was möchten Sie gerne tun?");
+                Console.WriteLine("Geben Sie '1' ein, um ein neues ToDo einzutragen");
+                Console.WriteLine("Geben Sie '2' ein, um ein ToDo zu entfernen");
+                Console.WriteLine("Geben Sie '3' ein, um Ihre ToDos anzuzeigen");
+                Console.WriteLine("Und 'e' zum Beenden");
+
+                option = Console.ReadLine();
+
+                if (option == "1")
+                {
+                    Console.WriteLine("Was möchten Sie der ToDo-Liste hinzufügen?");
+                    string task = Console.ReadLine();
+                    taskList.Add(task);
+                    Console.WriteLine("Aufgabe hinzugefügt");
+                }
+                else if (option == "2")
+                {
+                    for (int i = 0; i < taskList.Count; i++)
+                    {
+                        Console.WriteLine(i + " : " + taskList[i]);
+                    }
+                    Console.WriteLine("Bitte geben Sie die Nummer der Aufgabe ein, die entfernt werden soll.");
+                    int taskNumber = Convert.ToInt32(Console.ReadLine());
+                    if (taskNumber >= 0 && taskNumber < taskList.Count)
+                    {
+                        taskList.RemoveAt(taskNumber);
+                        Console.WriteLine("Aufgabe entfernt");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ungültige Nummer");
+                    }
+                }
+                else if (option == "3")
+                {
+                    Console.WriteLine("Aktuelle Aufgaben in der Liste");
+                    for (int i = taskList.Count - 1; i >= 0; i--)
+                    {
+                        Console.WriteLine(taskList[i]);
+                    }
+                }
+                else if (option == "e")
+                {
+                    Console.WriteLine("Beenden");
+                }
+                else
+                {
+                    Console.WriteLine("Ungültige Eingabe. Bitte versuchen Sie es erneut.");
+                }
+            }
+        }
+    }
+}
